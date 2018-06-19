@@ -15,21 +15,19 @@ import * as tapTypes from './singer/tap-types'
 
 /** Convert the Mime message into json */
 export async function parseItem(emailDir: string) {
-  return new Promise(function(resolve, reject) {
-    let buffer = fse.readFile(emailDir)
-    buffer.then(readSuccess)
-  })
-
-  function readSuccess() {
-    let parsed = sp(buffer)
-    let rec = new tapTypes.streamRecord()
-    rec.stream = 'email'
-    rec.time_extracted = new Date()
-    rec.record = parsed
-    return rec
-  }
-
-  function readFile() {
-    return
-  }
+  // return new Promise(function(resolve, reject) {
+  //   let buffer = fse.readFile(emailDir)
+  //   buffer.then(readSuccess)
+  // })
+  // function readSuccess() {
+  //   let parsed = sp(buffer)
+  //   let rec = new tapTypes.streamRecord()
+  //   rec.stream = 'email'
+  //   rec.time_extracted = new Date()
+  //   rec.record = parsed
+  //   return rec
+  // }
+  // function readFile() {
+  //   return
+  // }
 }
