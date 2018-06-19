@@ -36,9 +36,10 @@ export async function scanDir(configObjs: tapTypes.allConfigs, parser: any) {
   }
   let parsedObjs = await Promise.all(
     // return an array of promises, one per filename, for Promise.all to run asynchronously
+    // Get file directory instead of readfile in scan-dir, let readfile be done in pareser
     filelist.map(async function(filename, idx) {
-      let buffer = await fse.readFile(config.target_folder + '/' + filename)
-      return parser(buffer, configObjs) // the parsing is done here
+      let filedir = config.target_folder + '/' + filename
+      return parser(filedir, configObjs) // the parsing is done here
     })
   )
   let parsing = (parsedObjs: any) => {
