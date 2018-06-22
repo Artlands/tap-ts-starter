@@ -3,11 +3,11 @@
 import * as tapTypes from './singer/tap-types'
 let csvjson = require('csvjson')
 let options = {
-  // delimiter: ',', // optional
-  // quote: '"' // optional
+  delimiter: ',', // optional
+  quote: '"' // optional
 }
 
-export function parseItem(csvfile: Buffer) {
+export async function parseItem(csvfile: Buffer) {
   let jsonobj = csvjson.toObject(csvfile.toString())
   let rec = new tapTypes.streamRecord()
   rec.stream = 'csv'

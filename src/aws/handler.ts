@@ -8,7 +8,7 @@
 
 import getFile = require('./s3-getfile')
 import * as fse from 'fs-extra'
-import * as parseMime from '../parse-mime'
+import * as parseCsv from '../parse-csv'
 
 // response object for Lambda Proxy integration; see https://serverless.com/framework/docs/providers/aws/events/apigateway/
 class lambdaResponse {
@@ -39,7 +39,7 @@ export function handleFileTrigger(event: any, context: any, callback: any) {
 
   function handleFile(contents: any) {
     console.log('File Contents: \n' + contents)
-    parseMime.parseItem(contents).then(function(parsedObj: Object) {
+    parseCsv.parseItem(contents).then(function(parsedObj: Object) {
       console.log('Parsed Contents: \n' + JSON.stringify(parsedObj))
       response.body = JSON.stringify(parsedObj)
     })
