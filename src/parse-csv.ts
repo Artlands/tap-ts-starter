@@ -8,11 +8,10 @@ let options = {
 }
 
 export function parseItem(csvfile: Buffer) {
-  return csvjson.toObject(csvfile.toString(), options, function(csvObj: object) {
-    let rec = new tapTypes.streamRecord()
-    rec.stream = 'csv'
-    rec.time_extracted = new Date()
-    rec.record = csvObj
-    return rec
-  })
+  let jsonobj = csvjson.toObject(csvfile.toString())
+  let rec = new tapTypes.streamRecord()
+  rec.stream = 'csv'
+  rec.time_extracted = new Date()
+  rec.record = jsonobj
+  return rec
 }
